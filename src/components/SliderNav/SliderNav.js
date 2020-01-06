@@ -12,10 +12,10 @@ class SliderNav extends Component{
          if(item.children){
             return (
                <SubMenu
-               key="sub2"
+               key={item.id}
                title={
                  <span>
-                   <Icon type="laptop" />
+                   <Icon type={item.icon||'home'} />
                    {item.name}
                  </span>
                }

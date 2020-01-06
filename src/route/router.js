@@ -2,6 +2,7 @@ import React,{Component} from 'react'
 import {HashRouter,NavLink,Switch,Route} from 'react-router-dom'
 import Admin from '../pages/Admin/Admin'
 import Login from '../pages/Login/Login'
+import Data from '../pages/Data/Data'
 class RouteApp extends Component{
    render(){
       return(
@@ -14,7 +15,9 @@ class RouteApp extends Component{
                <Route path='/admin' render={()=>{
                   return(
                      <Admin>
-                        
+                        <Switch>
+                        <Route path='/admin/data/dataing' component={Data}></Route>
+                        </Switch> 
                      </Admin>
                   )
                }}></Route>

@@ -29,5 +29,18 @@ export default [
          id:'2-1'
        }
      ]
-   }
+   },
+   {
+    name:'数据统计',
+    icon:'',
+    path:'',
+    id:'3',
+    children:[
+      {
+        name:'数据报表',
+        path:'/admin/data/dataing',
+        id:'3-0'
+      }
+    ]
+  }
  ]

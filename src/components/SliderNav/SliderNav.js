@@ -15,7 +15,7 @@ class SliderNav extends Component{
                key={item.id}
                title={
                  <span>
-                   <Icon type={item.icon||'smile'} />
+                   <Icon type={item.icon||'home'} />
                    {item.name}
                  </span>
                }

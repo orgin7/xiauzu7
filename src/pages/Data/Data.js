@@ -1,10 +1,16 @@
 import React from 'react';
+import Pie from '../../components/echarts/Pie/Pie'
+import Line from '../../components/echarts/Line/Line'
 
 
 function DataStatic() {
   return (
-    <div className="App">
-       这是数据统计统计表
+    <div style={{display:'flex'}}>
+        <Line></Line>
+        <Pie></Pie>
+        
+        
+       
     </div>
   );
 }

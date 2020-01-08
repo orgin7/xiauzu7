@@ -41,16 +41,14 @@ class SliderNav extends Component{
    }
    render(){
       return(
-       
+         // <Sider width={200} style={{ background: '#fff' }}>
             <Menu
                mode="inline"
-              
-               
                style={{ height: '100%', borderRight: 0 }}
             >
-            {this.renderItem(MenuData)}
+               {this.renderItem(MenuData)}
             </Menu>
-        
+         // </Sider>
       )
    }
 }

@@ -1,9 +1,8 @@
 import React,{Component} from 'react'
-import {Menu,Icon, Layout} from 'antd'
+import {Menu,Icon} from 'antd'
 import {Link} from 'react-router-dom'
 import MenuData from './AllList'
 const {SubMenu} =Menu
-const {Sider } = Layout
 
 class SliderNav extends Component{
    renderItem(data){
@@ -41,16 +40,14 @@ class SliderNav extends Component{
    }
    render(){
       return(
-         <Sider width={200} style={{ background: '#fff' }}>
+         // <Sider width={200} style={{ background: '#fff' }}>
             <Menu
                mode="inline"
-               defaultSelectedKeys={['0']}
-               
                style={{ height: '100%', borderRight: 0 }}
             >
-            {this.renderItem(MenuData)}
+               {this.renderItem(MenuData)}
             </Menu>
-         </Sider>
+         // </Sider>
       )
    }
 }

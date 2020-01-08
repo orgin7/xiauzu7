@@ -1,11 +1,18 @@
 import React,{Fragment,Component} from 'react'
 import styles from './admin.module.less'
-import { Layout, Menu, Breadcrumb} from 'antd';
+import { Layout, Menu,Icon,Modal} from 'antd';
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import ActionCreator from '../../store/actionCreator'
+import {bindActionCreators} from 'redux'
 import SliderNav from '../../components/SliderNav/SliderNav'
+import HeaderNav from '../../components/HeaderNav/HeaderNav'
 const { Header, Content, Sider ,Footer} = Layout;
 
 class Route extends Component{
    render(){
+      console.log(this)
+      let {tokenModal,setTokenModal} = this.props
       return(
          <Fragment>
             <Layout className={styles.admin}>
@@ -31,11 +38,12 @@ class Route extends Component{
                   </Menu>
                   </Sider>
                   <Layout style={{ padding: '0 24px 24px' }}>
-                  <Breadcrumb style={{ margin: '16px 0' }}>
-                     <Breadcrumb.Item>Home</Breadcrumb.Item>
-                     <Breadcrumb.Item>List</Breadcrumb.Item>
-                     <Breadcrumb.Item>App</Breadcrumb.Item>
-                  </Breadcrumb>
+                     <Header style={{ background: '#fff', padding: 0 }}>
+                        <Icon
+                        className="trigger"
+                        />
+                        <HeaderNav></HeaderNav>
+                     </Header>
                   <Content
                      style={{
                         background: '#fff',
@@ -50,8 +58,24 @@ class Route extends Component{
                   </Layout>
                </Layout>
             </Layout>
+            {/* 模态框 */}
+            <Modal
+            title='提示'
+            visible={tokenModal}
+            onCancel={()=>{
+               setTokenModal(false)
+             }}
+             onOk={()=>{
+               this.props.history.replace('/login')
+               setTokenModal(false)
+             }}
+            >
+               token失效！请重新登录
+            </Modal>
          </Fragment>
       )
    }
 }
-export default Route
+export default connect(state=>state,(dispatch)=>{
+   return bindActionCreators(ActionCreator,dispatch)
+})(withRouter(Route))

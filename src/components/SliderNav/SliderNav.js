@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
-import {Menu,Icon} from 'antd'
+import {Menu,Icon, Layout} from 'antd'
 import {Link} from 'react-router-dom'
 import MenuData from './AllList'
 const {SubMenu} =Menu
+const {Sider } = Layout
 
 class SliderNav extends Component{
    renderItem(data){
@@ -10,14 +11,17 @@ class SliderNav extends Component{
       let result=data.map((item)=>{
          if(item.children){
             return (
-               <SubMenu key={item.id} title={
-                  <span>
-                     <Icon type={item.icon||'home'}></Icon>
-                     <span>{item.name||'哈哈'}</span>
-                  </span>
-               }>
-                  {this.renderItem(item.children)}
-               </SubMenu>
+               <SubMenu
+               key={item.id}
+               title={
+                 <span>
+                   <Icon type={item.icon||'home'} />
+                   {item.name}
+                 </span>
+               }
+             >
+               {this.renderItem(item.children)}
+             </SubMenu>
             )
          }
          else{
@@ -37,9 +41,16 @@ class SliderNav extends Component{
    }
    render(){
       return(
-         <Menu mode='vertical' >
+         <Sider width={200} style={{ background: '#fff' }}>
+            <Menu
+               mode="inline"
+               defaultSelectedKeys={['0']}
+               
+               style={{ height: '100%', borderRight: 0 }}
+            >
             {this.renderItem(MenuData)}
-         </Menu>  
+            </Menu>
+         </Sider>
       )
    }
 }

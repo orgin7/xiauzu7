@@ -1,26 +1,41 @@
-import axios from 'axios'
-import qs from "qs"
+import axios from "axios"
+import {getItem} from '../utils/webStorage'
+import store from  '../store/store'
+import ActionCreator from  '../store/actionCreator'
+import qs from "querystring"
+
+
+// Add a request interceptor
 axios.interceptors.request.use(function (config) {
-  // 在发送请求之前做些什么
-  config.headers['Content-Type'] = 'application/x-www-form-urlencoded' 
-    if (config.method === 'post') { 
-      config.data = qs.stringify({
-        ...config.data
-      })
-    }
+      config.headers['Content-Type'] = 'application/x-www-form-urlencoded' 
+        if (config.method === 'post') { 
+          config.data = qs.stringify({
+            ...config.data
+          })
+        }
 
-  return config;
-}, function (error) {
-  // 对请求错误做些什么
-  return Promise.reject(error);
-});
-
-// 添加响应拦截器
+    // Do something before request is sent
+    config.data.token=getItem('token')||''
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  });
+ 
+// Add a response interceptor
 axios.interceptors.response.use(function (response) {
-  // 对响应数据做点什么
-  return response;
-}, function (error) {
-  // 对响应错误做点什么
-  return Promise.reject(error);
-});
-export default axios
+    // Do something with response data
+    let list = [-996,-997,-998,-999]
+    if(list.indexOf(response.data.err)!==-1){
+      // console.log('token有问题')
+      store.dispatch(ActionCreator.setTokenModal(true))
+      return Promise.reject(response)
+    }
+    return response.data;
+  }, function (error) {
+    // Do something with response error
+    return Promise.reject(error);
+  });
+
+  export default axios
+

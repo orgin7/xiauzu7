@@ -7,10 +7,24 @@ export default [
      id:'0'
    },
    {
-     name:'设置',
+     name:'权限管理',
      icon:'setting',
-     path:'/admin/setting',
-     id:'1'
+     path:'/admin/power',
+     id:'1',
+     children:[
+       {
+         name:"角色列表",
+         icon:"setting",
+         path:"/admin/power/role",
+         id:"1-0"
+       },
+       {
+        name:"权限列表",
+        icon:"setting",
+        path:"/admin/power/right",
+        id:"1-1"
+       }
+     ]
    },
    {
      name:'商品管理',

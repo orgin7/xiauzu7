@@ -195,7 +195,7 @@ class UserList extends Component{
             </Spin>
             <br/>
             <br/>
-            <Pagination style={{position:'absolute',bottom:'180px',left:'240px'}}
+            <Pagination style={{position:'absolute',bottom:'180px',left:'50px'}}
                simple
                total={allCount}
                pageSize={pageSize}

@@ -38,7 +38,9 @@ class Route extends Component{
            {arr2.map((item,index)=>{
                return(
                   <Breadcrumb.Item key={index}>
-                     <span >{item.split('/')[1].replace(item.split('/')[1][0],item.split('/')[1][0].toLocaleUpperCase())}</span> 
+                     <span style={{fontWeight:'bold',}}>
+                        {item.split('/')[1].replace(item.split('/')[1][0],item.split('/')[1][0].toLocaleUpperCase())}
+                     </span> 
                   </Breadcrumb.Item>
                )
            })}

@@ -55,7 +55,7 @@ class Route extends Component{
       return newArr.join('')
    }
    render(){
-      // console.log(this)
+      console.log(this)
       let {tokenModal,setTokenModal} = this.props
       return(
          <Fragment>
@@ -94,6 +94,7 @@ class Route extends Component{
                      }}
                   >
                      {this.props.children}
+
                   </Content>
                   <Footer>这里是底部</Footer>
                   </Layout>

@@ -10,26 +10,7 @@ export default [
      name:'用户管理',
      icon:'user',
      id:'1',
-     children:[
-        {
-          name:'用户列表',
-          icon:'user',
-          id:'1-0',
-          path:'/admin/user/list'
-        },
-        {
-            name:'添加用户',
-            icon:'user-add',
-            id:'1-1',
-            path:'/admin/user/add'
-        },
-        {
-            name:'移除用户',
-            icon:'user-delete',
-            id:'1-2',
-            path:'/admin/user/del'
-        },
-     ]
+     path:'/admin/user'
    },
    {
      name:'商品管理',

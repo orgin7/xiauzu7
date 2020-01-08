@@ -1,10 +1,44 @@
 import React,{Fragment,Component} from 'react'
 import styles from './admin.module.less'
+import {Link} from 'react-router-dom'
 import { Layout, Menu, Breadcrumb} from 'antd';
 import SliderNav from '../../components/SliderNav/SliderNav'
 const { Header, Content, Sider ,Footer} = Layout;
 
 class Route extends Component{
+   bread=()=>{
+      var hash =window.location.hash.split('#/admin')[1]
+      // console.log(hash)  http://localhost:3000/#/admin/home
+      var arr=hash.split('/')
+      arr.splice(0,1)
+      let arr2=arr.map((item,index)=>{
+         item='/'+item
+         return item
+      })
+      // console.log(arr)
+      // console.log(arr2)
+      return(
+        <Fragment>
+           {arr2.map((item,index)=>{
+               return(
+                  <Breadcrumb.Item key={index}>
+                     <Link to={'/admin'+this.bindStr(arr2,index)} >{item.split('/')[1].replace(item.split('/')[1][0],item.split('/')[1][0].toLocaleUpperCase())}</Link> 
+                  </Breadcrumb.Item>
+               )
+           })}
+        </Fragment>
+      )
+   }
+   bindStr=(arr,index)=>{
+      // console.log(arr,index)  //["/user", "/add"] 0
+      let newArr=arr.filter((sItem,sIndex)=>{
+         if(sIndex<=index){
+            return sItem
+         }
+      })
+      // console.log(newArr)
+      return newArr.join('')
+   }
    render(){
       return(
          <Fragment>
@@ -35,9 +69,7 @@ class Route extends Component{
                   </Sider>
                   <Layout style={{ padding: '0 24px 24px' }}>
                   <Breadcrumb style={{ margin: '16px 0' }}>
-                     <Breadcrumb.Item>Home</Breadcrumb.Item>
-                     <Breadcrumb.Item>List</Breadcrumb.Item>
-                     <Breadcrumb.Item>App</Breadcrumb.Item>
+                      {this.bread()}
                   </Breadcrumb>
                   <Content
                      style={{

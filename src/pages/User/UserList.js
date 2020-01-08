@@ -46,6 +46,7 @@ class UserList extends Component{
          {
             title:'操作',
             align:'center',
+            width:'300px',
             render:(data)=>{
                return(
                   <Fragment>

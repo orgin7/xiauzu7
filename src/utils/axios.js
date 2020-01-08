@@ -9,6 +9,9 @@ axios.interceptors.request.use(function (config) {
     // console.log(config.data)
     if(config.data){
        config.data.token=getItem('token')||''
+    }else{
+      config.data={}
+      config.data.token=getItem('token')||''
     }
     config.headers['Content-Type'] = 'application/x-www-form-urlencoded' 
       if (config.method === 'post') { 

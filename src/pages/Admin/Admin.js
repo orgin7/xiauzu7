@@ -8,6 +8,7 @@ import ActionCreator from '../../store/actionCreator'
 import {bindActionCreators} from 'redux'
 import SliderNav from '../../components/SliderNav/SliderNav'
 import HeaderNav from '../../components/HeaderNav/HeaderNav'
+import './admin.less'
 const { Header, Content, Sider ,Footer} = Layout;
 
 class Route extends Component{
@@ -81,21 +82,24 @@ class Route extends Component{
                      <SliderNav></SliderNav>
                      </Menu>
                   </Sider>
-                  <Layout style={{ padding: '0 24px 24px' }}>
-                  <Breadcrumb style={{ margin: '16px 0' }}>
-                      {this.bread()}
-                  </Breadcrumb>
-                  <Content
-                     style={{
-                        background: '#fff',
-                        padding: 24,
-                        margin: 0,
-                        minHeight: 280,
-                     }}
-                  >
-                     {this.props.children}
-                  </Content>
-                  <Footer>这里是底部</Footer>
+                  <Layout style={{ padding: '0 24px 24px' ,position:'relative'}}>
+                     {/* <Header style={{background:'rgb(240,242,245)'}}> */}
+                        <Breadcrumb style={{ margin: '16px 0' }}>
+                           {this.bread()}
+                        </Breadcrumb>
+                        <HeaderNav className={styles.head}></HeaderNav>
+                     {/* </Header> */}
+                     <Content
+                        style={{
+                           background: '#fff',
+                           padding: 24,
+                           margin: 0,
+                           minHeight: 280,
+                        }}
+                     >
+                        {this.props.children}
+                     </Content>
+                     <Footer>这里是底部</Footer>
                   </Layout>
                </Layout>
             </Layout>

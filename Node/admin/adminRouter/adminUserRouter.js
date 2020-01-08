@@ -62,7 +62,7 @@ router.post('/getUser',(req,res)=>{
   .then((data)=>{
     console.log(data.length)
     let allCount =data.length
-    adminModel.find().skip((page-1)*pageSize).limit(pageSize)
+    adminModel.find().skip((page-1)*pageSize).limit(Number(pageSize))
     .then((user)=>{
       // console.log(user)
       res.send({err:0,msg:'获取 ok',list:user,allCount})
@@ -104,7 +104,7 @@ router.post('/getUserByKw',(req,res)=>{
   adminModel.find({$or:[{userName:{$regex:regex}},{email:{$regex:regex}},{age:{$regex:regex}},{phone:{$regex:regex}},{address:{$regex:regex}}]})
   .then((data)=>{
     let  allCount = data.length
-    adminModel.find({$or:[{userName:{$regex:regex}},{email:{$regex:regex}},{age:{$regex:regex}},{phone:{$regex:regex}},{address:{$regex:regex}}]}).skip((page-1)*pageSize).limit(pageSize)
+    adminModel.find({$or:[{userName:{$regex:regex}},{email:{$regex:regex}},{age:{$regex:regex}},{phone:{$regex:regex}},{address:{$regex:regex}}]}).skip((page-1)*pageSize).limit(Number(pageSize))
     .then((user)=>{
       res.send({err:0,msg:'查询 ok',list:user,allCount})
     })

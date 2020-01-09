@@ -2,8 +2,8 @@ import React,{Component} from 'react'
 import {HashRouter,NavLink,Switch,Route} from 'react-router-dom'
 import Admin from '../pages/Admin/Admin'
 import Login from '../pages/Login/Login'
-import GoodsList from '../pages/Goods/List/List'
-import GoodsAdd from '../pages/Goods/Add/Add'
+import GoodsList from '../pages/GoodData/List/List'
+import GoodsAdd from '../pages/GoodData/Add/Add'
 class RouteApp extends Component{
    render(){
       return(

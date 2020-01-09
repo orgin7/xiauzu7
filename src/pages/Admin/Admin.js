@@ -47,7 +47,7 @@ class Route extends Component{
                         minHeight: 280,
                      }}
                   >
-                     Content
+                     {this.props.children}
                   </Content>
                   <Footer>这里是底部</Footer>
                   </Layout>

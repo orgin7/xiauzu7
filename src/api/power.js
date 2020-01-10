@@ -2,7 +2,7 @@ import axios from "../utils/axios"
 
 export var getPower=()=>{
     return new Promise((resolve,reject)=>{
-        let url ="http://localhost:3000/77/power/get"
+        let url ="http://10.60.14.76:3003/v1/admin/user/getUser"
         axios.post(url)
         .then((res)=>{
             resolve(res)
@@ -14,7 +14,7 @@ export var getPower=()=>{
 }
 export var delPower=(_id)=>{
     return new Promise((resolve,reject)=>{
-        let url ="http://localhost:3000/77/power/del"
+        let url ="http://10.60.14.76:3003/v1/admin/user/delUser"
         axios.post(url,{_id})
         .then((res)=>{
             resolve(res)
@@ -26,7 +26,7 @@ export var delPower=(_id)=>{
 }
 export var addPower=(name,dev)=>{
     return new Promise((resolve,reject)=>{
-        let url ="http://localhost:3000/77/power/add"
+        let url ="http://10.60.14.76:3003/v1/admin/user/reg"
         axios.post(url,{user:name,dev:dev})
         .then((res)=>{
             resolve(res)
@@ -38,7 +38,7 @@ export var addPower=(name,dev)=>{
 }
 export var updataPower=(_id,name,dev)=>{
     return new Promise((resolve,reject)=>{
-        let url ="http://localhost:3000/77/power/updata"
+        let url ="http://10.60.14.76:3003/v1/admin/user/updateUser'"
         axios.post(url,{_id:_id,user:name,dev:dev})
         .then((res)=>{
             resolve(res)

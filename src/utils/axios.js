@@ -2,21 +2,20 @@ import axios from "axios"
 import {getItem} from '../utils/webStorage'
 import store from  '../store/store'
 import ActionCreator from  '../store/actionCreator'
-import qs from "querystring"
+import qs from "qs"
 
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {
-      config.headers['Content-Type'] = 'application/x-www-form-urlencoded' 
-        if (config.method === 'post') { 
-          config.data = qs.stringify({
-            ...config.data
-          })
-        }
-
+      // config.headers['Content-Type'] = 'application/x-www-form-urlencoded' 
+      //   if (config.method === 'post') { 
+      //     config.data = qs.stringify({
+      //       ...config.data
+      //     })
+      //   }
+        return config;
     // Do something before request is sent
-    config.data.token=getItem('token')||''
-    return config;
+    
   }, function (error) {
     // Do something with request error
     return Promise.reject(error);

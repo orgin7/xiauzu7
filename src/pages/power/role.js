@@ -39,7 +39,10 @@ class Role extends Component{
                <Modal
                   visible={visible}
                   title="添加列表"
-                  onOk={this.handleOk}
+                  onOk={()=>{
+                     this.handleOk()
+                     
+                  }}
                   onCancel={this.handleCancel}
                   footer={[
                      <Button key="back" onClick={this.handleCancel}>
@@ -48,8 +51,9 @@ class Role extends Component{
                      <Button key="submit" type="primary" onClick={()=>{
                         this.handleOk();
                         this.submit()
+                        this.refs.Rtable.reload()
                      }}>
-                     添加
+                     确定
                      </Button>,
                   ]}
                >
@@ -59,7 +63,7 @@ class Role extends Component{
                </Modal>
                <Button type="primary" shape="round" size="large" onClick={this.showModal}>添加</Button>
             </div>
-            <Rtable></Rtable>
+            <Rtable ref="Rtable"></Rtable>
          </Fragment>
       )
    }

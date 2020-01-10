@@ -88,6 +88,15 @@ module.exports = function(proxy, allowedHost) {
     },
     public: allowedHost,
     proxy:{
+      '/hello':{
+        target:'http://localhost:3003',
+        changeOrigin:true,
+        pathRewrite:{"^/hello":''}},
+      '/user':{
+        target:'http://localhost:3003',
+        changeOrigin:true,
+        pathRewrite:{"^/user":''}
+      },
       '/hehe':{
         target:'http://127.0.0.1:3003',
         changeOrigin:true,
@@ -113,4 +122,4 @@ module.exports = function(proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
     },
   };
-};
+  }

@@ -1,5 +1,6 @@
 // 用户所有的权限列表
 export default [
+ 
   {
     name: '首页',
     icon: 'home',
@@ -9,27 +10,8 @@ export default [
   {
     name: '用户管理',
     icon: 'user',
-    id: '1',
-    children: [
-      {
-        name: '用户列表',
-        icon: 'user',
-        id: '1-0',
-        path: '/admin/user/list'
-      },
-      {
-        name: '添加用户',
-        icon: 'user-add',
-        id: '1-1',
-        path: '/admin/user/add'
-      },
-      {
-        name: '移除用户',
-        icon: 'user-delete',
-        id: '1-2',
-        path: '/admin/user/del'
-      },
-    ]
+    path:'/admin/user',
+    id: '2',
   },
   {
     name: '权限管理',
@@ -81,7 +63,19 @@ export default [
         id: '4-0'
       }
     ]
-  }
+  }, {
+    name:'订单管理',
+    icon:'check-circle',
+    id:'5',
+    path:'',
+    children:[
+     { name:'订单列表',
+      path:'/admin/document/list',
+      icon:'smile',
+      id:'5-0'} 
+     ]
+    }
+,
 ]
 
 

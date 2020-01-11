@@ -41,7 +41,7 @@ class Login extends Component{
                <Input
                  prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                  type="text"
-                 placeholder="Username"
+                 placeholder="用户名"
                />
              )}  
            </Form.Item>
@@ -52,19 +52,18 @@ class Login extends Component{
                <Input
                  prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                  type="password"
-                 placeholder="Password"
+                 placeholder="密码"
                />
              )}  
            </Form.Item>
                <Form.Item>
-                 <Checkbox>Remember me</Checkbox>
+                 <Checkbox>记住密码</Checkbox>
                  <a className="login-form-forgot" href="">
-                   Forgot password
+                   忘记密码
                  </a>
                  <Button type="primary" onClick={this.login}>
-                   Log in
+                   登录
                  </Button>
-                 Or <a href="">register now!</a>
                </Form.Item>
            </Card> 
        </div>

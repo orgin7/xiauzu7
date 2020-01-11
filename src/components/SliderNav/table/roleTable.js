@@ -115,7 +115,7 @@ class Rtable extends Component {
                 key: 'r',
                 width:150,
                 render:(data)=>{
-                    let {useName,dev,_id}=this.state
+                    let {useName,dev,_id,user}=this.state
                     return(
                         <div>
                             <Button type="primary" onClick={()=>{
@@ -135,7 +135,7 @@ class Rtable extends Component {
                                 }}
                                 onCancel={this.handleCancel}
                                 >
-                                 名字：<Input value={useName} onChange={(e)=>{
+                                 名字：<Input value={user} onChange={(e)=>{
                                    this.setState({      
                                       user:e.target.value    
                                    })
@@ -187,7 +187,7 @@ class Rtable extends Component {
         }
         this.setState(
           data.list.map((item,index)=>{
-            let obj = {key:index,userName:item.userName}
+            let obj = {key:index,userName:item.userName,_id:item._id,dev:item.dev}
             this.state.data=[]
             this.state.data.push(obj)
             
@@ -205,10 +205,13 @@ class Rtable extends Component {
     reload(){
         getPower()
         .then((data)=>{
+          this.state.data=[]
           this.setState(
             data.list.map((item,index)=>{
-              let obj = {key:index,userName:item.userName}
+              let obj = {key:index,userName:item.userName,_id:item._id,dev:item.dev}
+              
               this.state.data.push(obj)
+              console.log(this.state.data)
             })
           )
         })
@@ -238,7 +241,7 @@ class Rtable extends Component {
         .then((data)=>{
           this.setState(
             data.list.map((item,index)=>{
-              let obj = {key:index,userName:item.userName}
+              let obj = {key:index,userName:item.userName,_id:item._id,dev:item.dev}
               this.state.data.push(obj)
               // console.log(this.state.data)
             })

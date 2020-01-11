@@ -27,7 +27,7 @@ export var delPower=(_id)=>{
 export var addPower=(name,dev)=>{
     return new Promise((resolve,reject)=>{
         let url ="http://10.60.14.76:3003/v1/admin/user/reg"
-        axios.post(url,{user:name,dev:dev})
+        axios.post(url,{userName:name,dev:dev})
         .then((res)=>{
             resolve(res)
         })
@@ -38,8 +38,8 @@ export var addPower=(name,dev)=>{
 }
 export var updataPower=(_id,name,dev)=>{
     return new Promise((resolve,reject)=>{
-        let url ="http://10.60.14.76:3003/v1/admin/user/updateUser'"
-        axios.post(url,{_id:_id,user:name,dev:dev})
+        let url ="http://10.60.14.76:3003/v1/admin/user/updateUser"
+        axios.post(url,{_id:_id,userName:name,dev:dev})
         .then((res)=>{
             resolve(res)
         })

@@ -49,7 +49,7 @@ class Role extends Component{
                   title="添加列表"
                   onOk={()=>{
                      this.handleOk()
-                     
+                     this.refs.Rtable.reload()
                   }}
                   onCancel={this.handleCancel}
                   footer={[

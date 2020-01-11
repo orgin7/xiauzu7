@@ -1,7 +1,7 @@
 const jwt  = require('../utils/jwt')
 module.exports= (req,res,next)=>{
   console.log('token',req.headers)
-  var arr =['/user/login','/user/reg','/user/getUser']
+  var arr =['/user/login']
   if(arr.indexOf(req.path)!==-1){
     next()
   }else{

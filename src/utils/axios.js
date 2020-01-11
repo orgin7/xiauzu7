@@ -22,7 +22,7 @@ axios.interceptors.request.use(function (config) {
       }
 
     // Do something before request is sent
-   
+  
     return config;
   }, function (error) {
     // Do something with request error
@@ -33,7 +33,7 @@ axios.interceptors.request.use(function (config) {
 axios.interceptors.response.use(function (response) {
     // Do something with response data
     let list = [-996,-997,-998,-999]
-    if(list.indexOf(response.data.err)!==-1){
+    if(list.indexOf(response.data.err)!=-1){
       // console.log('token有问题')
       store.dispatch(ActionCreator.setTokenModal(true))
       return Promise.reject(response)

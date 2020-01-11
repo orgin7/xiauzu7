@@ -8,30 +8,30 @@ export default [
     id: '0'
   },
   {
+    name: '用户管理',
+    icon: 'user',
+    path:'/admin/user',
+    id: '2',
+  },
+  {
     name: '权限管理',
     icon: 'setting',
     path: '/admin/power',
-    id: '1',
+    id: '2',
     children: [
       {
         name: "角色列表",
         icon: "setting",
         path: "/admin/power/role",
-        id: "1-0"
+        id: "2-0"
       },
       {
         name: "权限列表",
         icon: "setting",
         path: "/admin/power/right",
-        id: "1-1"
+        id: "2-1"
       }
     ]
-  },
-  {
-    name: '用户管理',
-    icon: 'user',
-    path:'/admin/user',
-    id: '2',
   },
   {
     name: '商品管理',

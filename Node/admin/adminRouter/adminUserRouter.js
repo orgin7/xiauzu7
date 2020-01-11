@@ -2,6 +2,7 @@ const express = require('express')
 const router =express.Router()
 const jwt = require('../../utils/jwt')
 const adminModel = require('../../db/model/adminModel')
+//登录
 router.post('/login',(req,res)=>{
   let {userName,passWord} = req.body 
   // console.log(userName,passWord)

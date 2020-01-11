@@ -25,6 +25,7 @@ class Login extends Component{
          })
          .catch((err)=>{
             console.log(err)
+            message.error('密码或账号错误!登录失败',1)
          })
       })
    }

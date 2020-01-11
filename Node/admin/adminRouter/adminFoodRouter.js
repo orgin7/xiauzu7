@@ -58,7 +58,7 @@ router.post('/addFood',(req,res)=>{
 //修改 
 router.post('/updateFood',(req,res)=>{
   let {_id,num,pay,trans,number} = req.body 
-  console.log(_id,num,pay,trans,number)
+  // console.log(_id,num,pay,trans,number)
   Food.update(_id,num,pay,trans,number)
   .then((data)=>{res.send({err:0,msg:'修改ok'})})
   .catch((data)=>{res.send({err:-1,msg:'修改失败'})})

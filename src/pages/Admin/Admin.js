@@ -58,7 +58,7 @@ class Route extends Component{
       return newArr.join('')
    }
    render(){
-      console.log(this)
+      // console.log(this)
       let {tokenModal,setTokenModal} = this.props
       return(
          <Fragment>
@@ -94,7 +94,7 @@ class Route extends Component{
                      <Content
                         style={{
                            background: '#fff',
-                           minHeight: 1000,
+                           minHeight: 850,
                         }}
                      >
                         {this.props.children}

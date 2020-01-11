@@ -1,7 +1,7 @@
 //添加数据
 import axios from '../utils/axios'
 export const addGood = async({name,price,img,foodType,desc})=>{
-    let url = '/hehe/v1/admin/food/addFood'
+    let url = '/hello/v1/admin/food/addGoodsFood'
     let result = await axios.post(url, {name,price,img,foodType,desc})
     if(result.err == 0){
         return result
@@ -11,7 +11,7 @@ export const addGood = async({name,price,img,foodType,desc})=>{
 }
 //获取商品列表
 export const getGoods = async(page, pageSize)=>{
-    let url = '/hehe/v1/admin/food/getFoods'
+    let url = '/hello/v1/admin/food/getGoodsFoods'
     let result = await axios.post(url, {page, pageSize})
     if(result.err == 0){
         return result
@@ -22,7 +22,7 @@ export const getGoods = async(page, pageSize)=>{
 
 //根据id删除数据
 export const delGood = async(foodId)=>{
-    let url = '/hehe/v1/admin/food/delFood'
+    let url = '/hello/v1/admin/food/delGoodsFood'
     let result = await axios.post(url, {foodId})
     if(result.err == 0){
         return result
@@ -33,7 +33,7 @@ export const delGood = async(foodId)=>{
 
 //更新数据
 export const updateGoods = async({_id,name,price,img,foodType,desc})=>{
-    let url = '/hehe/v1/admin/food/updateFood'
+    let url = '/hello/v1/admin/food/updateGoodsFood'
     let foodId = _id
     let result = await axios.post(url, {foodId,name,price,img,foodType,desc})
     if(result.err == 0){
@@ -45,7 +45,7 @@ export const updateGoods = async({_id,name,price,img,foodType,desc})=>{
 
 //分类查询
 export const getGoodsByType = async({page, pageSize,foodType})=>{
-    let url = '/hehe/v1/admin/food/getFoodsByType'
+    let url = '/hello/v1/admin/food/getFoodsByGoodsType'
     let result = await axios.post(url, {page, pageSize,foodType})
     if(result.err == 0){
         return result
@@ -57,7 +57,7 @@ export const getGoodsByType = async({page, pageSize,foodType})=>{
 
 //关键字查询
 export const getGoodsByKw = async({page, pageSize,kw})=>{
-    let url = '/hehe/v1/admin/food/getFoodsByKw'
+    let url = '/hello/v1/admin/food/getFoodsByGoodsKw'
     let result = await axios.post(url, {page, pageSize,kw})
     if(result.err == 0){
         return result

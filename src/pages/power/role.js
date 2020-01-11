@@ -1,7 +1,7 @@
 import React,{Fragment,Component} from 'react'
-import { Input,Button,Modal} from 'antd';
+import { Input,Button,Modal,Spin } from 'antd';
 import Rtable from "../../components/SliderNav/table/roleTable"
-import {addPower} from "../../api/power"
+import {addPower,ByKwPower} from "../../api/power"
 const { Search } = Input;
 
 class Role extends Component{
@@ -10,6 +10,8 @@ class Role extends Component{
       this.state={
          loading: false,
          visible: false,
+         spinning:true,
+         msg:{}
       }
    }
    showModal = () => {
@@ -28,14 +30,20 @@ class Role extends Component{
       let row2 = this.refs.row2.state.value
       addPower(row1,row2)
     }
-    
+    componentDidMount(){
+       this.setState({spinning:false})
+    }
    render(){
       const { visible } = this.state;
       
       return(
          <Fragment>
             <div>
-               <Search placeholder="输入搜索" onSearch={value => console.log(value)} enterButton style={{ width: 400 }}/>
+               <Spin size="large"  spinning={this.state.spinning}/>
+               <Search placeholder="输入搜索" onSearch={(value)=>{
+                  this.refs.Rtable.shuangxin(value)
+                  
+               }} enterButton style={{ width: 400 }}/>
                <Modal
                   visible={visible}
                   title="添加列表"
@@ -62,8 +70,9 @@ class Role extends Component{
                  
                </Modal>
                <Button type="primary" shape="round" size="large" onClick={this.showModal}>添加</Button>
+
             </div>
-            <Rtable ref="Rtable"></Rtable>
+            <Rtable ref="Rtable" msg={this.msg}></Rtable>
          </Fragment>
       )
    }

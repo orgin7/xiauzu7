@@ -48,3 +48,15 @@ export var updataPower=(_id,name,dev)=>{
         })
     })
 }
+export var ByKwPower=(kw)=>{
+    return new Promise((resolve,reject)=>{
+        let url ="http://10.60.14.76:3003/v1/admin/user/getUserByKw"
+        axios.post(url,{kw:kw})
+        .then((res)=>{
+            resolve(res)
+        })
+        .catch((err)=>{
+            reject(err)
+        })
+    })
+}

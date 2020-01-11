@@ -19,6 +19,7 @@ class RouteApp extends Component {
             <NavLink to='/login'></NavLink>
             {/* 路由组件 */}
             <Switch>
+               <Redirect exact from='/' to='/login'></Redirect>
                <Route path='/login' component={Login}></Route>
                <Route path='/reg' component={Reg}></Route>
                <Route path='/admin' render={() => {

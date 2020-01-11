@@ -1,6 +1,6 @@
 import React,{Component} from "react";
-import { Table, Button,Modal ,Input,message,TreeSelect ,Popconfirm} from 'antd'
-import {getPower,delPower,updataPower} from "../../../api/power"
+import { Table, Button,Modal ,Input,message,TreeSelect ,Popconfirm } from 'antd'
+import {getPower,delPower,updataPower,ByKwPower} from "../../../api/power"
 const { SHOW_PARENT } = TreeSelect;
 class Rtable extends Component {
     constructor(){
@@ -99,18 +99,21 @@ class Rtable extends Component {
                 title: '名字',
                 dataIndex: 'userName',
                 key: 'userName',
-                
+                width:150,
             },
             {
                 title: '描述',
                 dataIndex: 'dev',
                 key: 'dev',
-                
+                 ellipsis: true,
+                 width:150,
             },
             {
                 title: '操作',
-                // dataIndex: '_id',
+                
+                // dataIndex: '_id', 
                 key: 'r',
+                width:150,
                 render:(data)=>{
                     let {useName,dev,_id}=this.state
                     return(
@@ -175,6 +178,23 @@ class Rtable extends Component {
                 }
             },
         ]
+    }
+    shuangxin(fvalue){
+      ByKwPower(fvalue)
+      .then((data)=>{
+        if(!data.list.length){
+          this.setState({data:[]})
+        }
+        this.setState(
+          data.list.map((item,index)=>{
+            let obj = {key:index,userName:item.userName}
+            this.state.data=[]
+            this.state.data.push(obj)
+            
+          })
+        )
+        console.log(this.state.data)
+      })
     }
     onChange = value => {
         this.setState({ value:value },()=>{

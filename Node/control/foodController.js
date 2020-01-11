@@ -41,11 +41,11 @@ async function del(_id){
 async function  update(_id,num,pay,trans,number){
   // console.log(_id,num,pay,trans,number)
   
-// try {
-//   let result  = await FoodModel.updateOne({_id:_id},{num,pay,trans,number})
-// } catch (error) {
-//   console.log(error)
-// }
+try {
+  let result  = await FoodModel.updateOne({_id:_id},{num,pay,trans,number})
+} catch (error) {
+  console.log(error)
+}
   let result  = await FoodModel.updateOne({_id:_id},{num,pay,trans,number})
    console.log(result)
    return  result

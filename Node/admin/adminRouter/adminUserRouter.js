@@ -36,9 +36,27 @@ router.post('/logout',(req,res)=>{
 //注册
 router.post('/reg',(req,res)=>{
   let {userName,passWord,age,phone,address,email,dev} = req.body 
-  console.log(userName,passWord,age,phone,address,email,dev)
+
+  // console.log(userName,passWord,age,phone,address,email,dev)
   // console.log(userName)
-  adminModel.find({userName})
+  if(dev && !age){
+    passWord='0000',
+    age='20',
+    phone='111111',
+    address='千峰',
+    email='1111.@qq.com'
+    console.log(userName,passWord,age,phone,address,email,dev)
+    adminModel.insertMany({userName,passWord,age,phone,address,email,dev})
+    .then((data)=>{
+      // console.log(data)
+      res.send({err:0,msg:'reg ok'})
+    })
+    .catch((err)=>{
+      // console.log(err)
+      res.send({err:-1,msg:'reg nook'})
+    })
+  }else{
+    adminModel.find({userName})
   .then((list)=>{
     // console.log(list)
     if(list.length!==0){
@@ -56,6 +74,8 @@ router.post('/reg',(req,res)=>{
       })
     }
   })
+  }
+  
 })
 //获取数据
 router.post('/getUser',(req,res)=>{
@@ -77,6 +97,7 @@ router.post('/getUser',(req,res)=>{
 //删除
 router.post('/delUser',(req,res)=>{
   let  {_id}=req.body
+  console.log(_id)
   adminModel.deleteOne({_id})
   .then((data)=>{
     res.send({err:0,msg:'del ok'})
@@ -90,15 +111,16 @@ router.post('/delUser',(req,res)=>{
 router.post('/updateUser',(req,res)=>{
   // userName dev 
   let {_id,userName,age,phone,address,email,dev} = req.body 
-  // console.log(_id,userName,age,phone,address,email,dev)
+  console.log(_id,userName,age,phone,address,email,dev)
   if(dev && !age){
-    adminModel.updateOne({_id},{dev})
+    adminModel.updateOne({_id},{dev,userName})
     .then((data)=>{res.send({err:0,msg:'修改ok'})})
     .catch((data)=>{
       // console.log(data)
       res.send({err:-1,msg:'修改失败'})
     })
-  }else{
+  }
+  else{
     adminModel.updateOne({_id},{userName,age,phone,address,email})
     .then((data)=>{res.send({err:0,msg:'修改ok'})})
     .catch((data)=>{

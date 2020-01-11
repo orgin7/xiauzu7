@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { HashRouter, NavLink, Switch, Route, Redirect, } from 'react-router-dom'
 import Admin from '../pages/Admin/Admin'
 import Login from '../pages/Login/Login'
+import GoodsList from '../pages/GoodData/List/List'
+import GoodsAdd from '../pages/GoodData/Add/Add'
 import Role from "../pages/power/role"
 import Right from "../pages/power/right"
 import Home from '../pages/Home/Home'
@@ -25,9 +27,12 @@ class RouteApp extends Component {
                <Route path='/admin' render={() => {
                   return (
                      <Admin>
+                       
                         <Switch>
                            <Redirect exact from='/admin' to='/admin/home'></Redirect>
                            <Route exact path="/admin/power/role" component={Role}></Route>
+                           <Route path='/admin/goods/list' component={GoodsList}></Route>
+                           <Route path='/admin/goods/add' component={GoodsAdd}></Route>
                            <Route exact path="/admin/power/right" component={Right}></Route>
                            <Route exact path='/admin/home' component={Home}></Route>
                            <Route exact path='/admin/data/dataing' component={Data}></Route>

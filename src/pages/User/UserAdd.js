@@ -57,7 +57,7 @@ class UserAdd extends Component{
                               {getFieldDecorator(`${item.msg}`, {
                                  rules: [
                                     {required: true,message: 'Input something!'},
-                                    {pattern:``,message:`${item.errmsg}`},
+                                    {pattern:`${item.rex}`,message:`${item.errmsg}`},
                                  ],
                               })(<Input.Password placeholder={'请输入'+item.msg} />)}
                               <br/>

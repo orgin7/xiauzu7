@@ -63,7 +63,7 @@ class Login extends Component{
                            {getFieldDecorator(`${item.msg}`, {
                               rules: [
                                  {required: true,message: 'Input something!'},
-                                 {pattern:``,message:`${item.errmsg}`},
+                                 {pattern:`${item.rex}`,message:`${item.errmsg}`},
                               ],
                            })(<Input placeholder={'请输入'+item.msg} />)}
                            <br/>

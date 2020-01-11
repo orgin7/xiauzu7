@@ -1,6 +1,6 @@
 import React,{Component} from "react";
-import { Table, Button,Modal ,Input,message,TreeSelect ,Popconfirm} from 'antd'
-import {getPower,delPower,updataPower} from "../../../api/power"
+import { Table, Button,Modal ,Input,message,TreeSelect ,Popconfirm } from 'antd'
+import {getPower,delPower,updataPower,ByKwPower} from "../../../api/power"
 const { SHOW_PARENT } = TreeSelect;
 class Rtable extends Component {
     constructor(){
@@ -12,47 +12,84 @@ class Rtable extends Component {
             visible1: false,
             user:{},
             dev:{},
-            _id:""
+            _id:"",
+            value: [],
+            msg:[]
         }
-        var treeData={
+        var treeData=[
+          {
             title: '商品管理',
             value: '0-0',
             key: '0-0',
             children:[
-                {
-                    title: '商品列表',
-                    value: '0-1',
-                    key: '0-1',
-                    children:[
                         {
                             title: '添加商品',
-                            value: '0-1-0',
-                            key: '0-1-0',
+                            value: '0-1',
+                            key: '0-1',
                         },
                         {
                             title: '修改商品',
-                            value: '0-1-1',
-                            key: '0-1-1',
+                            value: '0-2',
+                            key: '0-2',
                         },
                         {
                             title: '删除商品',
-                            value: '0-1-2',
-                            key: '0-1-2',
+                            value: '0-3',
+                            key: '0-3',
                         }
-                    ]
-                }
+            ]},
+          {
+            title:"用户管理",
+            value:"1-0",
+            key:"1-0",
+            children:[
+              {
+                title:"添加用户",
+                value:"1-1",
+                key:"1-1"
+              },
+              {
+                title:"删除用户",
+                value:"1-2",
+                key:"1-2"
+              },
+              {
+                title:"修改用户",
+                value:"1-3",
+                key:"1-3"
+              }
             ]
-        }
+          },
+          {
+            title:"订单管理",
+            value:"2-0",
+            key:"2-0",
+            children:[
+              {
+                title:"添加订单",
+                value:"2-1",
+                key:"2-1"
+              },
+              {
+                title:"删除",
+                value:"2-2",
+                key:"2-2"
+              },
+              {
+                title:"修改",
+                value:"2-3",
+                key:"2-3"
+              }
+            ]
+          }
+          ]
         const tProps = {
             treeData,
             value: this.state.value,
             onChange: this.onChange,
-            multiple:true,
-            checkable:true,
             treeCheckable: true,
             showCheckedStrategy: SHOW_PARENT,
             searchPlaceholder: 'Please select',
-            // onChange:{},
             style: {
               width: '100%',
             },
@@ -60,29 +97,32 @@ class Rtable extends Component {
         this.columns=[
             {
                 title: '名字',
-                dataIndex: 'user',
-                key: 'user',
-                
+                dataIndex: 'userName',
+                key: 'userName',
+                width:150,
             },
             {
                 title: '描述',
                 dataIndex: 'dev',
                 key: 'dev',
-                
+                 ellipsis: true,
+                 width:150,
             },
             {
                 title: '操作',
-                // dataIndex: '_id',
+                
+                // dataIndex: '_id', 
                 key: 'r',
+                width:150,
                 render:(data)=>{
-                    let {user,dev,_id}=this.state
+                    let {useName,dev,_id}=this.state
                     return(
                         <div>
                             <Button type="primary" onClick={()=>{
                               console.log(data)
                               this.showModal()
                               this.state._id=data._id
-                              this.state.user=data.user
+                              this.state.user=data.useName
                               this.state.dev=data.dev
                             }}>编辑</Button>
                             <Modal 
@@ -95,7 +135,7 @@ class Rtable extends Component {
                                 }}
                                 onCancel={this.handleCancel}
                                 >
-                                 名字：<Input value={user} onChange={(e)=>{
+                                 名字：<Input value={useName} onChange={(e)=>{
                                    this.setState({      
                                       user:e.target.value    
                                    })
@@ -139,13 +179,38 @@ class Rtable extends Component {
             },
         ]
     }
+    shuangxin(fvalue){
+      ByKwPower(fvalue)
+      .then((data)=>{
+        if(!data.list.length){
+          this.setState({data:[]})
+        }
+        this.setState(
+          data.list.map((item,index)=>{
+            let obj = {key:index,userName:item.userName}
+            this.state.data=[]
+            this.state.data.push(obj)
+            
+          })
+        )
+        console.log(this.state.data)
+      })
+    }
     onChange = value => {
-        this.setState({ value });
+        this.setState({ value:value },()=>{
+          this.state.msg.push(this.state.value)
+          // console.log(this.state.msg)
+        });
       };
     reload(){
         getPower()
         .then((data)=>{
-            this.setState({data:data.data.db})
+          this.setState(
+            data.list.map((item,index)=>{
+              let obj = {key:index,userName:item.userName}
+              this.state.data.push(obj)
+            })
+          )
         })
     }
     handleOk = e => {
@@ -171,8 +236,13 @@ class Rtable extends Component {
     componentDidMount(){
         getPower()
         .then((data)=>{
-            console.log(data.data.db)
-            this.setState({data:data.data.db})
+          this.setState(
+            data.list.map((item,index)=>{
+              let obj = {key:index,userName:item.userName}
+              this.state.data.push(obj)
+              // console.log(this.state.data)
+            })
+          )
         })
     }
     render(){

@@ -13,7 +13,15 @@ const db=require("./db/connect.js");
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 /******************   router config   ********************/
-
+app.all("/*", function(req, res, next) {
+	// 跨域处理
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+	res.header("X-Powered-By", ' 3.2.1');
+	res.header("Content-Type", "application/json;charset=utf-8");
+	next();
+	})
 // 管理平台接口
 const admin = require('./admin/admin')
 const tokenMiddleWare = require('./middleware/token')

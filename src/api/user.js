@@ -1,11 +1,10 @@
 import axios from '../utils/axios'
 //注册
 import {getItem} from '../utils/webStorage'
-import storage from '../utils/webStorage'
 export const userReg= async (params)=>{
    let url='/user/v1/admin/user/reg'
-   let {userName,passWord,age,phone,address,email}=params
-   let result=await axios.post(url,{userName,passWord,age,phone,address,email})
+   let {userName,passWord,age,phone,address,email,dev}=params
+   let result=await axios.post(url,{userName,passWord,age,phone,address,email,dev})
    if(result.err==0){
       return result
    }

@@ -17,13 +17,13 @@ export default [
     name: '权限管理',
     icon: 'setting',
     path: '/admin/power',
-    id: '2',
+    id: '1',
     children: [
       {
         name: "角色列表",
         icon: "setting",
         path: "/admin/power/role",
-        id: "2-0"
+        id: "1-0"
       },
       {
         name: "权限列表",
@@ -51,19 +51,7 @@ export default [
       }
     ]
   },
-  {
-    name: '数据统计',
-    icon: '',
-    path: '',
-    id: '4',
-    children: [
-      {
-        name: '数据报表',
-        path: '/admin/data/dataing',
-        id: '4-0'
-      }
-    ]
-  }, {
+   {
     name:'订单管理',
     icon:'check-circle',
     id:'5',

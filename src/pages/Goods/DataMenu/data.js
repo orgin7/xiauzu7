@@ -9,7 +9,9 @@ class GoodData extends Component{
     }
     componentWillReceiveProps(props){
         console.log(props)
-        this.setState={...props.updataInfo}
+      
+        this.setState({...props.updataInfo})
+        console.log(this)
     }
   
    

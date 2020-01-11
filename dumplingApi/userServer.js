@@ -17,7 +17,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 // 管理平台接口
 const admin = require('./admin/admin')
 const tokenMiddleWare = require('./middleware/token')
-app.use('/v1/admin',admin)
+app.use('/v1/admin',tokenMiddleWare,admin)
 app.listen(3003,(res)=>{
 
 	console.log('server start in '+3000)

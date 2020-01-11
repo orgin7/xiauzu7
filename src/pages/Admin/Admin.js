@@ -1,11 +1,62 @@
 import React,{Fragment,Component} from 'react'
 import styles from './admin.module.less'
-import { Layout, Menu, Breadcrumb} from 'antd';
+import {Link} from 'react-router-dom'
+import { Layout, Menu, Breadcrumb,Icon,Modal} from 'antd';
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import ActionCreator from '../../store/actionCreator'
+import {bindActionCreators} from 'redux'
 import SliderNav from '../../components/SliderNav/SliderNav'
+import HeaderNav from '../../components/HeaderNav/HeaderNav'
 const { Header, Content, Sider ,Footer} = Layout;
 
 class Route extends Component{
+   // componentDidMount(){
+   //    window.addEventListener('load',()=>{
+   //       this.props.history.push('/admin/home')
+   //    })
+   // }
+   // remove(){
+   // }
+   // componentWillUnmount(){
+   //    window.removeEventListener('load',this.remove)
+   // }
+   bread=()=>{
+      var hash =window.location.hash.split('#/admin')[1]
+      // console.log(hash)  http://localhost:3000/#/admin/home
+      var arr=hash.split('/')
+      arr.splice(0,1)
+      let arr2=arr.map((item,index)=>{
+         item='/'+item
+         return item
+      })
+      // console.log(arr)
+      // console.log(arr2)
+      return(
+        <Fragment>
+           {arr2.map((item,index)=>{
+               return(
+                  <Breadcrumb.Item key={index}>
+                     <span >{item.split('/')[1].replace(item.split('/')[1][0],item.split('/')[1][0].toLocaleUpperCase())}</span> 
+                  </Breadcrumb.Item>
+               )
+           })}
+        </Fragment>
+      )
+   }
+   bindStr=(arr,index)=>{
+      // console.log(arr,index)  //["/user", "/add"] 0
+      let newArr=arr.filter((sItem,sIndex)=>{
+         if(sIndex<=index){
+            return sItem
+         }
+      })
+      // console.log(newArr)
+      return newArr.join('')
+   }
    render(){
+      console.log(this)
+      let {tokenModal,setTokenModal} = this.props
       return(
          <Fragment>
             <Layout className={styles.admin}>
@@ -14,30 +65,25 @@ class Route extends Component{
                   <Menu
                   theme="dark"
                   mode="horizontal"
-                  defaultSelectedKeys={['2']}
+                  
                   style={{ lineHeight: '64px' }}
                   >
-                  <Menu.Item key="1">nav 1</Menu.Item>
-                  <Menu.Item key="2">nav 2</Menu.Item>
-                  <Menu.Item key="3">nav 3</Menu.Item>
                   </Menu>
                </Header>
                <Layout>
                   <Sider width={200} style={{ background: '#fff' }}>
-                  <Menu
-                     mode="inline"
-                     defaultSelectedKeys={['1']}
-                     defaultOpenKeys={['sub1']}
-                     style={{ height: '100%', borderRight: 0 }}
-                  >
-                  <SliderNav></SliderNav>
-                  </Menu>
+                     <Menu
+                        mode="inline"
+                        defaultSelectedKeys={['1']}
+                        // defaultOpenKeys={['sub1']}
+                        style={{ height: '100%', borderRight: 0 }}
+                     >
+                     <SliderNav></SliderNav>
+                     </Menu>
                   </Sider>
                   <Layout style={{ padding: '0 24px 24px' }}>
                   <Breadcrumb style={{ margin: '16px 0' }}>
-                     <Breadcrumb.Item>Home</Breadcrumb.Item>
-                     <Breadcrumb.Item>List</Breadcrumb.Item>
-                     <Breadcrumb.Item>App</Breadcrumb.Item>
+                      {this.bread()}
                   </Breadcrumb>
                   <Content
                      style={{
@@ -48,13 +94,29 @@ class Route extends Component{
                      }}
                   >
                      {this.props.children}
-                  </Content>
+                     </Content>
                   <Footer>这里是底部</Footer>
                   </Layout>
                </Layout>
             </Layout>
+            {/* 模态框 */}
+            <Modal
+            title='提示'
+            visible={tokenModal}
+            onCancel={()=>{
+               setTokenModal(false)
+             }}
+             onOk={()=>{
+               this.props.history.replace('/login')
+               setTokenModal(false)
+             }}
+            >
+               token失效！请重新登录
+            </Modal>
          </Fragment>
       )
    }
 }
-export default Route
+export default connect(state=>state,(dispatch)=>{
+   return bindActionCreators(ActionCreator,dispatch)
+})(withRouter(Route))

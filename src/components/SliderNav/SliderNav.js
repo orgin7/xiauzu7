@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Menu,Icon, Layout, Breadcrumb} from 'antd'
+import {Menu,Icon, Layout} from 'antd'
 import {Link} from 'react-router-dom'
 import MenuData from './AllList'
 const {SubMenu} =Menu
@@ -12,10 +12,10 @@ class SliderNav extends Component{
          if(item.children){
             return (
                <SubMenu
-               key="sub2"
+               key={item.id}
                title={
                  <span>
-                   <Icon type="laptop" />
+                   <Icon type={item.icon||'home'} />
                    {item.name}
                  </span>
                }
@@ -41,16 +41,14 @@ class SliderNav extends Component{
    }
    render(){
       return(
-         <Sider width={200} style={{ background: '#fff' }}>
-         <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{ height: '100%', borderRight: 0 }}
-         >
-            {this.renderItem(MenuData)}
-         </Menu>
-      </Sider>
+         // <Sider width={200} style={{ background: '#fff' }}>
+            <Menu
+               mode="inline"
+               style={{ height: '100%', borderRight: 0 }}
+            >
+               {this.renderItem(MenuData)}
+            </Menu>
+         // </Sider>
       )
    }
 }

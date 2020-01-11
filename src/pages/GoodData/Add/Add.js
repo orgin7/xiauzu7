@@ -1,5 +1,4 @@
 import React, { Component,Fragment } from 'react';
-import styles from './Add.module.less'
 import {addGood} from '../../../api/api'
 import {Button,message,Input, Form, Icon,Card, Checkbox,InputNumber,Upload } from 'antd'
 function beforeUpload(file) {
@@ -63,7 +62,7 @@ class GoodsAdd extends Component{
         let {getFieldDecorator} = this.props.form
         let {imageUrl} = this.state
         return (
-            <div className={styles.goodsAdd}>
+            <div>
                 <Card title='添加商品信息'> 
                     <Form.Item label="商品名称">
                         {getFieldDecorator('name',{

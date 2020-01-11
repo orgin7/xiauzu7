@@ -44,12 +44,20 @@ async function del(_id){
 async function  update(_id,num,pay,trans,number){
   // console.log(_id,num,pay,trans,number)
   
+<<<<<<< HEAD
 // try {
 //   let result  = await FoodModel.updateOne({_id:_id},{num,pay,trans,number})
 // } catch (error) {
 //   console.log(error)
 // }
 console.log(_id,num,pay,trans,number)
+=======
+try {
+  let result  = await FoodModel.updateOne({_id:_id},{num,pay,trans,number})
+} catch (error) {
+  console.log(error)
+}
+>>>>>>> 3b89f968aa5a62362c818b3063b68441db9d04ca
   let result  = await FoodModel.updateOne({_id:_id},{num,pay,trans,number})
   //  console.log(result)
    return  result

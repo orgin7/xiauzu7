@@ -61,7 +61,7 @@ router.post('/updateFood',(req,res)=>{
   // console.log(_id,num,pay,trans,number)
   Food.update(_id,num,pay,trans,number)
   .then((data)=>{res.send({err:0,msg:'修改ok'})})
-  .catch((data)=>{res.send({err:-1,msg:'修改失败'})})
+  .catch((err)=>{res.send({err:-1,msg:'修改失败'})})
 })
 
 

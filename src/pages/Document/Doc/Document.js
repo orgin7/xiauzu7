@@ -162,9 +162,12 @@ class GoodsList extends Component {
                     <DataMenu
 
                         updataInfo={updataInfo}
-
+                        // refreshList={() => {
+                        //     this.setState({ modalShow: false })
+                        //     this.getTableData()
+                        // }}
                     >
-
+                      
                     </DataMenu>
                 </Modal>
             </Fragment>

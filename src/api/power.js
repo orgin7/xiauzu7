@@ -15,6 +15,7 @@ export var getPower=()=>{
 export var delPower=(_id)=>{
     return new Promise((resolve,reject)=>{
         let url ="http://10.60.14.76:3003/v1/admin/user/delUser"
+        // console.log(_id)
         axios.post(url,{_id})
         .then((res)=>{
             resolve(res)

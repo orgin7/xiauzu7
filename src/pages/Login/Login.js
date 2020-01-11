@@ -15,11 +15,12 @@ class Login extends Component{
          UserLogin(userName,passWord)
          .then((res)=>{
             console.log(res)
+            setItem('userName',res.userName)
             setItem('token',res.token)
             setItem('uid',res.uid)
-            setItem('rootIds',res.rootList)
+            // setItem('rootIds',res.rootList)
             message.success('登录成功，1s后跳转首页',1,()=>{
-               this.props.history.replace('./admin/home')
+               this.props.history.replace('/admin/home')
             })
          })
          .catch((err)=>{
@@ -56,6 +57,7 @@ class Login extends Component{
                />
              )}  
            </Form.Item>
+<<<<<<< HEAD
                <Form.Item>
                  <Checkbox>记住密码</Checkbox>
                  <a className="login-form-forgot" href="">
@@ -64,6 +66,23 @@ class Login extends Component{
                  <Button type="primary" onClick={this.login}>
                    登录
                  </Button>
+=======
+           <Form.Item>
+                  {getFieldDecorator('remember', {
+                     valuePropName: 'checked',
+                     initialValue: true,
+                  })(<Checkbox>Remember me</Checkbox>)}
+                  <a style={{float:'right'}} className="login-form-forgot" href="">
+                     Forgot password
+                  </a>
+                  <br/>
+                  <Button style={{width:'310px'}} type="primary" onClick={()=>{
+                     this.login()
+                  }}>
+                     Login
+                  </Button><br/>
+                  Or <a href="http://localhost:3000/#/reg">register now!</a>
+>>>>>>> e3fb37fcad7ac9846607d5313edfd9bb56988edc
                </Form.Item>
            </Card> 
        </div>

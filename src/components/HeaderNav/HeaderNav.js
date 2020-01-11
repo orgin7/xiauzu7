@@ -2,13 +2,12 @@ import React,{Fragment,Component} from 'react'
 import {Dropdown,Menu,Icon, message,notification} from 'antd'
 import {clear} from '../../utils/webStorage'
 import {UserLogout} from '../../api/user'
-
-
+import {getItem} from '../../utils/webStorage'
+import {withRouter} from 'react-router-dom'
 const menuData =  [
     {path:'',name:'个人信息',icon:'user'},
     {path:'',name:'个人设置',icon:'user'},
     {path:'',name:'退出登录',icon:'user'},
-
 ]
 const openNotificationWithIcon = (type,msg) =>{
     notification[type]({
@@ -28,8 +27,9 @@ class HeaderNav extends Component{
                 .then((res)=>{
                     // console.log(res)
                     clear()
+                    this.props.history.push('/login')
                     openNotificationWithIcon('success','退出成功')
-                })
+                })   
                 .catch((err)=>{
                     openNotificationWithIcon('error','退出失败请重试')
                 })
@@ -55,15 +55,23 @@ class HeaderNav extends Component{
     </Menu>
         )
     }
+    admin(){
+        if(getItem('userName')){
+            return getItem('userName')
+        }
+        else{
+            return 'admin'
+        }
+    }
     render(){
         return(
             <Dropdown overlay={this.renderMenu(menuData)}>
-                <a className="ant-dropdown-link" href="#">
-                admin用户 <Icon type="down" />
+                <a className="ant-dropdown-link" >
+                {this.admin()} <Icon type="down" />
                 </a>
             </Dropdown>
         )
     }
 }
 
-export default HeaderNav
+export default withRouter(HeaderNav)

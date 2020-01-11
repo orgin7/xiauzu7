@@ -1,5 +1,5 @@
-import React,{Component} from 'react'
-import {HashRouter,NavLink,Switch,Route,Redirect,} from 'react-router-dom'
+import React, { Component } from 'react'
+import { HashRouter, NavLink, Switch, Route, Redirect, } from 'react-router-dom'
 import Admin from '../pages/Admin/Admin'
 import Login from '../pages/Login/Login'
 import Role from "../pages/power/role"
@@ -9,9 +9,11 @@ import UserList from '../pages/User/UserList'
 import Data from '../pages/Data/Data'
 import Reg from '../pages/Reg/Reg'
 import UserAdd from '../pages/User/UserAdd'
-class RouteApp extends Component{
-   render(){
-      return(
+import Document from '../pages/Document/Doc/Document'
+// import Home from '../pages/Home/Home'
+class RouteApp extends Component {
+   render() {
+      return (
          <HashRouter>
             {/* 导航 */}
             <NavLink to='/login'></NavLink>
@@ -19,8 +21,8 @@ class RouteApp extends Component{
             <Switch>
                <Route path='/login' component={Login}></Route>
                <Route path='/reg' component={Reg}></Route>
-               <Route path='/admin' render={()=>{
-                  return(
+               <Route path='/admin' render={() => {
+                  return (
                      <Admin>
                         <Switch>
                            <Redirect exact from='/admin' to='/admin/home'></Redirect>
@@ -30,7 +32,8 @@ class RouteApp extends Component{
                            <Route exact path='/admin/data/dataing' component={Data}></Route>
                            <Route exact path='/admin/user' component={UserList}></Route>
                            <Route exact path='/admin/user/add' component={UserAdd}></Route>
-                        </Switch> 
+                           <Route exact path='/admin/document/list' component={Document}></Route>
+                        </Switch>
                      </Admin>
                   )
                }}></Route>

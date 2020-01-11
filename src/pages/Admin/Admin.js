@@ -58,7 +58,7 @@ class Route extends Component{
       return newArr.join('')
    }
    render(){
-      // console.log(this)
+      console.log(this)
       let {tokenModal,setTokenModal} = this.props
       return(
          <Fragment>
@@ -86,7 +86,7 @@ class Route extends Component{
                   </Sider>
                   <Layout style={{ padding: '0 24px 24px' ,position:'relative'}}>
                      {/* <Header style={{background:'rgb(240,242,245)'}}> */}
-                        <Breadcrumb style={{ margin: '16px 0' }}>
+                        <Breadcrumb style={{ padding: '10px 0 10px 10px',background:'#fff'}}>
                            {this.bread()}
                         </Breadcrumb>
                         <HeaderNav className={styles.head}></HeaderNav>
@@ -94,14 +94,11 @@ class Route extends Component{
                      <Content
                         style={{
                            background: '#fff',
-                           padding: 24,
-                           margin: 0,
-                           minHeight: 280,
+                           minHeight: 1000,
                         }}
                      >
                         {this.props.children}
                      </Content>
-                     <Footer>这里是底部</Footer>
                   </Layout>
                </Layout>
             </Layout>

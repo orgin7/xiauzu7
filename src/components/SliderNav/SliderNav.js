@@ -1,8 +1,9 @@
 import React,{Component} from 'react'
-import {Menu,Icon} from 'antd'
+import {Menu,Icon, Layout} from 'antd'
 import {Link} from 'react-router-dom'
 import MenuData from './AllList'
 const {SubMenu} =Menu
+const {Sider } = Layout
 
 class SliderNav extends Component{
    renderItem(data){

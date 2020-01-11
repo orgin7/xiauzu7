@@ -8,6 +8,7 @@ router.post('/getFoods',(req,res)=>{
   let pageSize=Number(req.body.pageSize)||2
   Food.get(page,pageSize)
   .then((data)=>{
+    // console.log(data)
     res.send({err:0,msg:'查询ok',list:data})
   })
   .catch((err)=>{
@@ -25,10 +26,10 @@ router.get('/getFoodsByType',(req,res)=>{
   })
 })
 // 关键字查询
-router.get('/getFoodsByKw',(req,res)=>{
-  let page=Number(req.query.page)||1
-  let pageSize = Number(req.query.pageSize)||2
-  let kw = req.query.kw 
+router.post('/getFoodsByKw',(req,res)=>{
+  let page=Number(req.body.page)||1
+  let pageSize = Number(req.body.pageSize)||2
+  let kw = req.body.kw 
   Food.getByKw(kw,page,pageSize)
   .then((data)=>{
     res.send({err:0,msg:'ok',list:data})
@@ -47,8 +48,8 @@ router.post('/delFood',(req,res)=>{
 })
 //添加数据
 router.post('/addFood',(req,res)=>{
-  let {name,price,img,foodType,desc} = req.body 
-  Food.add(name,price,img,foodType,desc)
+  let {num,_id,number,price,pay,trans} = req.body 
+  Food.add(num,_id,number,price,pay,trans)
   .then((data)=>{res.send({err:0,msg:'添加ok'})})
   .catch((err)=>{
     console.log(err)
@@ -56,8 +57,9 @@ router.post('/addFood',(req,res)=>{
 })
 //修改 
 router.post('/updateFood',(req,res)=>{
-  let {foodId,name,price,img,foodType,desc} = req.body 
-  Food.update(foodId,name,price,img,foodType,desc)
+  let {_id,num,pay,trans,number} = req.body 
+  console.log(_id,num,pay,trans,number)
+  Food.update(_id,num,pay,trans,number)
   .then((data)=>{res.send({err:0,msg:'修改ok'})})
   .catch((data)=>{res.send({err:-1,msg:'修改失败'})})
 })

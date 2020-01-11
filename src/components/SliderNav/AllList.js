@@ -1,5 +1,6 @@
 // 用户所有的权限列表
 export default [
+ 
   {
     name: '首页',
     icon: 'home',
@@ -50,19 +51,19 @@ export default [
       }
     ]
   },
-  {
-    name: '数据统计',
-    icon: '',
-    path: '',
-    id: '4',
-    children: [
-      {
-        name: '数据报表',
-        path: '/admin/data/dataing',
-        id: '4-0'
-      }
-    ]
-  }
+   {
+    name:'订单管理',
+    icon:'check-circle',
+    id:'5',
+    path:'',
+    children:[
+     { name:'订单列表',
+      path:'/admin/document/list',
+      icon:'smile',
+      id:'5-0'} 
+     ]
+    }
+,
 ]
 
 

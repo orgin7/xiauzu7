@@ -11,42 +11,48 @@ class UserList extends Component{
             title: '用户名',
             dataIndex: 'userName',
             align:'center',
-            width:'190px',
+            width:'10%',
+            ellipsis:true,
          },
          {
             title: '年龄',
             dataIndex: 'age',
             align:'center',
-            width:'130px'
+            width:'10%',
+            ellipsis:true,
          },
          {
             title:'创建时间',
             dataIndex:'ctime',
             align:'center',
-            width:'300px'
+            width:'15%',
+            ellipsis:true,
          },
          {
             title: '联系方式',
             dataIndex: 'phone',
             align:'center',
-            width:'200px'
+            width:'15%',
+            ellipsis:true,
          },
          {
             title: '邮箱',
             dataIndex: 'email',
             align:'center',
-            width:'200px'
+            width:'15%',
+            ellipsis:true,
          },
          {
             title:'住址',
             dataIndex:'address',
             align:'center',
-            width:'300px'
+            width:'15%',
+            ellipsis:true,
          },
          {
             title:'操作',
             align:'center',
-            width:'300px',
+            width:'20%',
             render:(data)=>{
                return(
                   <Fragment>
@@ -125,6 +131,7 @@ class UserList extends Component{
       vagurSearch(this.state.searchValue,page,this.state.pageSize)
          .then((res)=>{
             console.log(res)
+            this.changeData(res)
             this.setState({dataSource:res.list,allCount:res.allCount,spinning:false,sign:false})
             // console.log(this.state.allCount,this.state.list)
          })
@@ -132,21 +139,25 @@ class UserList extends Component{
             console.log(err)
          })
    }
+   changeData(res){
+      res.list.map((item,index)=>{
+         //2020-01-07 T 01:59:12  .087Z
+         var str1='',str2=''
+         str1= item.ctime.split('T')[0]
+         str2=item.ctime.split('T')[1].split('.')[0]
+         str2=this.repair(parseInt(str2.split(':')[0])+8)+":"+str2.split(':')[1]+":"+str2.split(':')[2]
+         item.ctime=str1+" "+str2
+         return item
+      })
+      return res
+   }
    getData(page=1){
       this.setState({spinning:true})
       // console.log('获取')
       userGet(page,this.state.pageSize)
       .then((res)=>{
          // console.log(res)
-         res.list.map((item,index)=>{
-            //2020-01-07 T 01:59:12  .087Z
-            var str1='',str2=''
-            str1= item.ctime.split('T')[0]
-            str2=item.ctime.split('T')[1].split('.')[0]
-            str2=this.repair(parseInt(str2.split(':')[0])+8)+":"+str2.split(':')[1]+":"+str2.split(':')[2]
-            item.ctime=str1+" "+str2
-            return item
-         })
+         this.changeData(res)
          this.setState({dataSource:res.list,spinning:false,allCount:res.allCount,sign:true})
          // console.log(this.state.dataSource)
       })

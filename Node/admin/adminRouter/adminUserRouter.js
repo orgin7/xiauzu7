@@ -17,7 +17,10 @@ router.post('/login',(req,res)=>{
     return adminModel.updateMany({_id},{token})
   })
   .then((db)=>{
-    res.send({err:0,msg:'ok',token,rootList,uid:_id})
+    res.send({err:0,msg:'ok',token,rootList,uid:_id,userName})
+  })
+  .catch((err)=>{
+    res.send({err:-1,msg:'login nook'})
   })
 })
 
@@ -32,8 +35,8 @@ router.post('/logout',(req,res)=>{
 })
 //注册
 router.post('/reg',(req,res)=>{
-  let {userName,passWord,age,phone,address,email} = req.body 
-  // console.log(userName,passWord,age,phone,address,email)
+  let {userName,passWord,age,phone,address,email,dev} = req.body 
+  console.log(userName,passWord,age,phone,address,email,dev)
   // console.log(userName)
   adminModel.find({userName})
   .then((list)=>{
@@ -42,7 +45,7 @@ router.post('/reg',(req,res)=>{
       return res.send({err:-2,msg:'用户名已存在'})
     }
     else{
-      adminModel.insertMany({userName,passWord,age,phone,address,email})
+      adminModel.insertMany({userName,passWord,age,phone,address,email,dev})
       .then((data)=>{
         // console.log(data)
         res.send({err:0,msg:'reg ok'})
@@ -85,14 +88,25 @@ router.post('/delUser',(req,res)=>{
 
 //更新
 router.post('/updateUser',(req,res)=>{
-  let {_id,userName,age,phone,address,email} = req.body 
-  console.log(_id,userName,age,phone,address,email)
-  adminModel.updateOne({_id},{userName,age,phone,address,email})
-  .then((data)=>{res.send({err:0,msg:'修改ok'})})
-  .catch((data)=>{
-    // console.log(data)
-    res.send({err:-1,msg:'修改失败'})
-  })
+  // userName dev 
+  let {_id,userName,age,phone,address,email,dev} = req.body 
+  // console.log(_id,userName,age,phone,address,email,dev)
+  if(dev && !age){
+    adminModel.updateOne({_id},{dev})
+    .then((data)=>{res.send({err:0,msg:'修改ok'})})
+    .catch((data)=>{
+      // console.log(data)
+      res.send({err:-1,msg:'修改失败'})
+    })
+  }else{
+    adminModel.updateOne({_id},{userName,age,phone,address,email})
+    .then((data)=>{res.send({err:0,msg:'修改ok'})})
+    .catch((data)=>{
+      // console.log(data)
+      res.send({err:-1,msg:'修改失败'})
+    })
+  }
+  
 })
 //关键字查询
 router.post('/getUserByKw',(req,res)=>{

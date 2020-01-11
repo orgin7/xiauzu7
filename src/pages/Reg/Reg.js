@@ -25,6 +25,7 @@ class Login extends Component{
             return message.error('请正确填写信息',1)
          }
          // console.log('data',data)
+         data.dev='管理员'
          userReg(data)
          .then((res)=>{
             console.log(res)

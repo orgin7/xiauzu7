@@ -137,7 +137,7 @@ class Rtable extends Component {
                                 >
                                  名字：<Input value={useName} onChange={(e)=>{
                                    this.setState({      
-                                      user:e.target.value    
+                                      user:e.target.value
                                    })
                                  }} ></Input>
                                  描述：<Input value={dev} onChange={(e)=>{

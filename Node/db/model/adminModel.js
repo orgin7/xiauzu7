@@ -9,6 +9,7 @@
        phone: {type:String,required:true},
        email: {type:String,required:true},
        address: {type:String,required:true},
+       dev:{type:String,required:true},
        token: {type:String},
  })
  let adminsModel=mongoose.model('admins',adminSchema)

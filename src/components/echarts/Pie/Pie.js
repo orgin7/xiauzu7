@@ -45,7 +45,7 @@ render() {
   console.log('图标render')
   let {option} = this.state
  return(
-   <div style={{width:'500px',height:'400px'}}>  
+   <div style={{width:'500px'}}>  
      <ReactEcharts option={option}></ReactEcharts>
    </div>
  )

@@ -38,13 +38,7 @@ class RouteApp extends Component {
                            <Route exact path='/admin/data/dataing' component={Data}></Route>
                            <Route exact path='/admin/user' component={UserList}></Route>
                            <Route exact path='/admin/user/add' component={UserAdd}></Route>
-                           {/* <Route path='/admin/user/del' component={UserDel}></Route> */}
-                           {/* <Route exact path='/admin/user' component={UserList}></Route> */}
-                           <Switch>
-                              <Route path='/admin/document/list' component={Document}></Route>
-                              {/* <Route path='/admin/data/dataing' component={Data}></Route> */}
-                           </Switch>
-
+                           <Route exact path='/admin/document/list' component={Document}></Route>
                         </Switch>
                      </Admin>
                   )

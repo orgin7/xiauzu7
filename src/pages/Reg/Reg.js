@@ -25,6 +25,7 @@ class Login extends Component{
             return message.error('请正确填写信息',1)
          }
          // console.log('data',data)
+         data.dev='管理员'
          userReg(data)
          .then((res)=>{
             console.log(res)
@@ -62,7 +63,7 @@ class Login extends Component{
                            {getFieldDecorator(`${item.msg}`, {
                               rules: [
                                  {required: true,message: 'Input something!'},
-                                 {pattern:``,message:`${item.errmsg}`},
+                                 {pattern:`${item.rex}`,message:`${item.errmsg}`},
                               ],
                            })(<Input placeholder={'请输入'+item.msg} />)}
                            <br/>

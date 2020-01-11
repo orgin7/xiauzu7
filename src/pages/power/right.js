@@ -85,7 +85,7 @@ class Right extends Component{
    render(){
       return(
          <Fragment>
-            <Table columns={columns} dataSource={this.state.info} />
+            <Table rowKey='_id' columns={columns} dataSource={this.state.info} />
          </Fragment>
       )
    }
